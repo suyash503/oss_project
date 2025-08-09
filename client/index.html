@@ -3,16 +3,22 @@
 
 <head>
     <title>OSS AI App</title>
+    <!-- Link to your stylesheet for styling the application -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
     <div class="app">
         <h1>Ask the Open Source AI</h1>
+        <!-- Textarea for user input -->
         <textarea id="prompt" placeholder="Enter your prompt..."></textarea>
+        <!-- Button to trigger the AI response. Calls getResponse() from script.js -->
         <button onclick="getResponse()">Ask</button>
+        <!-- Preformatted text area to display the AI's response -->
         <pre id="response"></pre>
     </div>
+    <!-- Link to your JavaScript file. It's important that this is at the end of 
+         the body so that all HTML elements are loaded before the script tries to access them. -->
     <script src="script.js"></script>
 </body>
 

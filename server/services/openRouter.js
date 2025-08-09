@@ -9,7 +9,7 @@ exports.callOpenRouter = async (prompt) => {
         },
         {
             headers: {
-                Authorization: `Bearer ${process.env.sk - or - v1 - b7aab61449f4b4a0412f87f43cf413750c738c92f51ff1de225921150906935f}`,
+                Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                 'Content-Type': 'application/json',
             },
         }
