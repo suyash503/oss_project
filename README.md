@@ -1,0 +1,1 @@
+this was made just to explore feautres of open ai's newly added open source features and models like the oss120b and 20b, however i have used api keys as my laptop requirements were not that great to run the models locally but i learned the differnce between running using api calls and locally.
