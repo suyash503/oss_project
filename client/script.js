@@ -21,9 +21,9 @@ async function getResponse() {
     askButton.disabled = true; // Disable the button to prevent multiple submissions while waiting
 
     try {
-        // Make a POST request to your backend server's /chat endpoint
-        // Ensure 'http://localhost:5000' matches the address and port your backend is running on
-        const apiResponse = await fetch('http://localhost:5000/chat', {
+        // Make a POST request to your backend server's /api/chat endpoint
+        // IMPORTANT: The URL has been updated to include '/api' to match your backend routing.
+        const apiResponse = await fetch('http://localhost:5000/api/chat', { // <--- FIXED THIS LINE!
             method: 'POST', // Use the POST HTTP method
             headers: {
                 'Content-Type': 'application/json', // Inform the server that we are sending JSON data
@@ -35,8 +35,10 @@ async function getResponse() {
         if (!apiResponse.ok) {
             // Parse the error response from the server to get detailed error information
             const errorData = await apiResponse.json();
-            // Throw an error with a message from the server or a generic status
-            throw new Error(errorData.error || `Server error: ${apiResponse.status}`);
+            // Display a user-friendly error message from the backend or a generic one
+            responseDisplay.textContent = `Error: ${errorData.error || 'Unknown error'}. Details: ${errorData.details || 'No specific details provided.'}`;
+            responseDisplay.style.color = 'red'; // Set text color to red to indicate an error
+            return; // Exit here as there's an error
         }
 
         // Parse the successful JSON response from the server
@@ -49,7 +51,7 @@ async function getResponse() {
     } catch (error) {
         // Catch any errors that occur during the fetch operation (e.g., network issues, server errors)
         console.error("Error fetching AI response:", error); // Log the error to the console for debugging
-        responseDisplay.textContent = `Error: ${error.message}. Please try again.`; // Display a user-friendly error message
+        responseDisplay.textContent = `Network Error: Could not connect to the server. Please check your server and network.`; // Display a user-friendly error message
         responseDisplay.style.color = 'red'; // Set text color to red to indicate an error
     } finally {
         // This block will always execute, whether the try block succeeded or a catch block was triggered
