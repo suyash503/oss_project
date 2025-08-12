@@ -18,5 +18,5 @@ const {message} = req.body;
     logger.info("incoming message for ai processing:", { message });
 
     if(typeof message !== "string" || message.trim() === ""){
-        logger.warn("invalid message received: not a non empty string"))
-})
+        logger.warn("invalid message received: not a non empty string")
+}
