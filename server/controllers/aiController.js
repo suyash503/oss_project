@@ -1,22 +1,26 @@
-const { callOpenRouter } = require('../services/openRouter');
+// C:\Users\Suyash Singh\Documents\oss_project\server\controllers\aiController.js
 
-exports.getAIResponse = async (requestAnimationFrame, res) => {
-    const { prompt } = req.body;
-    try {
-        const response = await callOpenRouter(prompt);
-        res.json({ reply: response });
-    } catch (error) {
-        res.status(500).json({ error: 'Something went wrong' });
-    }
-};
-const openRouterService = require('../services/openRouter');
+const { callOpenRouter } = require('../services/openRouter');
 const logger = require('../utils/logger');
 
-async function chatController(req, res) {
+// FIX: This is the single, complete, and exported controller function.
+exports.chatController = async (req, res) => {
+    const { message } = req.body;
 
-const {message} = req.body;
-    logger.info("incoming message for ai processing:", { message });
+    // FIX: Proper validation that returns an error response.
+    if (typeof message !== "string" || message.trim() === "") {
+        logger.warn("Invalid message received: not a non-empty string");
+        return res.status(400).json({ error: "Message must be a non-empty string." });
+    }
 
-    if(typeof message !== "string" || message.trim() === ""){
-        logger.warn("invalid message received: not a non empty string")
-}
+    logger.info("Processing message with AI:", { message });
+
+    // FIX: A try...catch block to handle errors from the service layer.
+    try {
+        const reply = await callOpenRouter(message);
+        res.json({ reply: reply });
+    } catch (error) {
+        logger.error("Failed to get AI response", { errorMessage: error.message });
+        res.status(500).json({ error: 'Failed to communicate with the AI service.' });
+    }
+};
