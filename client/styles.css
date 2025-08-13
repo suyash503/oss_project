@@ -1,22 +1,100 @@
+/* C:\Users\Suyash Singh\Documents\oss_project\client\styles.css */
+
+/* --- Import a modern font from Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* --- General Body & Root Styling --- */
+:root {
+    --bg-color: #121212;
+    /* Off-black for the background */
+    --surface-color: #1e1e1e;
+    /* Slightly lighter for containers */
+    --primary-text: #e0e0e0;
+    /* Light gray for text */
+    --secondary-text: #a0a0a0;
+    /* Dimmer text */
+    --gradient-start: #8e2de2;
+    --gradient-end: #4a00e0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* --- Main App Container --- */
+.app {
+    background-color: var(--surface-color);
+    width: 90%;
+    max-width: 600px;
     padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Creates space between elements */
 }
 
-textarea {
-    width: 60%;
-    height: 100px;
+/* --- Gradient Title --- */
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 10px 0;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
 }
 
+/* --- Textarea for Prompts --- */
+#prompt {
+    width: 100%;
+    min-height: 100px;
+    background-color: var(--bg-color);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--primary-text);
+    resize: vertical;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    /* Ensures padding doesn't affect width */
+}
+
+#prompt:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+    box-shadow: 0 0 15px rgba(142, 45, 226, 0.4);
+    /* Glowing effect */
+}
+
+/* --- The 'Ask' Button --- */
 button {
-    padding: 10px 20px;
-    margin-top: 10px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-pre {
-    background: #f4f4f4;
-    padding: 10px;
-    width: 60%;
-    margin: 20px auto;
-}
+button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0
