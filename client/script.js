@@ -23,7 +23,7 @@ async function getResponse() {
     try {
         // Make a POST request to your backend server's /api/chat endpoint
         // IMPORTANT: The URL has been updated to include '/api' to match your backend routing.
-        const apiResponse = await fetch('http://oss-project-v4lh.onrender.com/api/chat', { // <--- FIXED THIS LINE!
+        const apiResponse = await fetch('https://oss-project-v4lh.onrender.com/api/chat', { // <--- FIXED THIS LINE!
             method: 'POST', // Use the POST HTTP method
             headers: {
                 'Content-Type': 'application/json', // Inform the server that we are sending JSON data
